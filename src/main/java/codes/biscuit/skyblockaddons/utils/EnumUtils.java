@@ -4,6 +4,7 @@ import static codes.biscuit.skyblockaddons.utils.Message.*;
 
 public class EnumUtils {
 
+    @SuppressWarnings("deprecation")
     public enum AnchorPoint {
         TOP_LEFT(0, ANCHOR_POINT_TOP_LEFT),
         TOP_RIGHT(1, ANCHOR_POINT_TOP_RIGHT),
@@ -183,7 +184,7 @@ public class EnumUtils {
         SPAWNED("NOW"),
         SPAWNED_PREDICTION("NOW"),
         EXACTLY(""),
-        ABOUT("~");
+        ABOUT("");
 
         private String symbol;
 
@@ -193,6 +194,27 @@ public class EnumUtils {
 
         public String getSymbol() {
             return symbol;
+        }
+    }
+
+    public enum MagmaEvent {
+        MAGMA_WAVE("magma"),
+        BLAZE_WAVE("blaze"),
+        BOSS_SPAWN("spawn"),
+        BOSS_DEATH("death"),
+
+        // Not actually an event
+        PING("ping");
+
+        // The event name used by InventiveTalent's API
+        private String inventiveTalentEvent;
+
+        MagmaEvent(String inventiveTalentEvent) {
+            this.inventiveTalentEvent = inventiveTalentEvent;
+        }
+
+        public String getInventiveTalentEvent() {
+            return inventiveTalentEvent;
         }
     }
 }

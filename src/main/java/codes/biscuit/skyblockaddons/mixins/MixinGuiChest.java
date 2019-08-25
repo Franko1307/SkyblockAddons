@@ -72,7 +72,7 @@ public abstract class MixinGuiChest extends GuiContainer {
             int xPos = guiLeft - 160;
             int yPos = guiTop + 80;
             textFieldMatch = new GuiTextField(2, this.fontRendererObj, xPos, yPos, 120, 20);
-            textFieldMatch.setMaxStringLength(100);
+            textFieldMatch.setMaxStringLength(500);
             List<String> lockedEnchantments = SkyblockAddons.getInstance().getUtils().getEnchantmentMatch();
             StringBuilder enchantmentBuilder = new StringBuilder();
             int i = 1;
@@ -89,7 +89,7 @@ public abstract class MixinGuiChest extends GuiContainer {
             }
             yPos += 40;
             textFieldExclusions = new GuiTextField(2, this.fontRendererObj, xPos, yPos, 120, 20);
-            textFieldExclusions.setMaxStringLength(100);
+            textFieldExclusions.setMaxStringLength(500);
             lockedEnchantments = SkyblockAddons.getInstance().getUtils().getEnchantmentExclusion();
             enchantmentBuilder = new StringBuilder();
             i = 1;
@@ -130,7 +130,7 @@ public abstract class MixinGuiChest extends GuiContainer {
     protected void handleMouseClick(Slot slotIn, int slotId, int clickedButton, int clickType) {
         SkyblockAddons main = SkyblockAddons.getInstance();
         if (main.getUtils().getEnchantmentMatch().size() > 0) {
-            if (slotIn != null && slotIn.getHasStack()) {
+            if (slotIn != null && !slotIn.inventory.equals(mc.thePlayer.inventory) && slotIn.getHasStack()) {
                 Container slots = inventorySlots;
                 if (slotIn.getSlotIndex() == 13 && inventoryType == EnumUtils.InventoryType.ENCHANTMENT_TABLE) {
                     ItemStack[] enchantBottles = {slots.getSlot(29).getStack(), slots.getSlot(31).getStack(), slots.getSlot(33).getStack()};
